@@ -76,11 +76,11 @@ def download_project():
 @route_logger(logger)
 def download_project_pdf():
     project_name = request.args.get("project_name")
-    pdf_dir = Config().get_pdfs_dir()
+    pdf_dir = Config().get_pdfs_dir()  # Update this path to your PDFs directory
     pdf_path = os.path.join(pdf_dir, f"{project_name}.pdf")
 
-    response = make_response(send_file(pdf_path))
-    response.headers['Content-Type'] = 'application/pdf'
+    # Directly return the response object created by send_file
+    response = send_file(pdf_path, mimetype='application/pdf')
     return response
 
 
